@@ -14,17 +14,7 @@ import { Mesh } from "three";
 export default function App() {
 	return (
 		<>
-			<div className="fixed top-0 left-0 z-50 w-full h-full pointer-events-none">
-				<InfoBox
-					title="Model Info"
-					description="This is a 3D model of a skeleton."
-					x={10}
-					y={10}
-					onClick={() => console.log("Info Box Clicked")}
-				/>
-				<ToolBar />
-				<LayerSelector />
-			</div>
+			<UIController />
 			<Canvas
 				className="bg-gray-300"
 				onCreated={(state) => {
@@ -52,7 +42,6 @@ export default function App() {
 				<ambientLight intensity={1.25} />
 
 				<CameraControls makeDefault />
-				<
 
 				<Model model="/models/skeleton.gltf" />
 				{/* <UIController /> */}
