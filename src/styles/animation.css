@@ -1,0 +1,15 @@
+@keyframes line-animation {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.textbox-line-closed {
+  transform: scaleY(0);
+}
+.textbox-line-open {
+  transform: scaleY(1);
+}
