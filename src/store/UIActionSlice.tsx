@@ -44,14 +44,20 @@ export const createUIActionSlice: StateCreator<
 			return;
 		}
 
-		console.log("Setting info box with group:", group.current, "and html:", html.current);
+		console.log(
+			"Setting info box with group:",
+			group.current,
+			"and html:",
+			html.current
+		);
 
 		const htmlGroup = group.current.children[0] as THREE.Group | null;
 		if (!htmlGroup) return;
 
 		// calculate scene position, distance, and size
 		const worldPosition =
-			group.current.getWorldPosition(new THREE.Vector3()) || new THREE.Vector3(0, 0, 0);
+			group.current.getWorldPosition(new THREE.Vector3()) ||
+			new THREE.Vector3(0, 0, 0);
 		const worldRotation = htmlGroup.rotation;
 		const distance = camera.position.distanceTo(worldPosition) || 0;
 
@@ -96,7 +102,7 @@ export const createUIActionSlice: StateCreator<
 			size: new THREE.Vector2(worldWidth, worldHeight),
 		});
 		const val = get().threeUI;
-		console.log("Current ThreeUI state:", val);
+		// console.log("Current ThreeUI state:", val);
 	},
 	updateInfoBox: (group, html) => {
 		if (!get().isInitialized) {
@@ -149,12 +155,12 @@ export const createUIActionSlice: StateCreator<
 		const aspect = size.width / size.height;
 		const visibleWidth = visibleHeight * aspect;
 		const rect = infoBox.html.current.getBoundingClientRect();
-		console.log("HTML element rect:", rect);
-		console.log("Visible dimensions:", {
-			visibleWidth,
-			visibleHeight,
-		});
-		console.log("Size dimensions:", size);
+		// console.log("HTML element rect:", rect);
+		// console.log("Visible dimensions:", {
+		// 	visibleWidth,
+		// 	visibleHeight,
+		// });
+		// console.log("Size dimensions:", size);
 
 		// Check if the HTML element has non-zero dimensions
 		// If the element has zero width or height, use a default minimum size
@@ -168,7 +174,7 @@ export const createUIActionSlice: StateCreator<
 
 		const newSize = get().threeUI?.infoBox?.size || new THREE.Vector2(0, 0);
 		newSize.set(worldWidth, worldHeight);
-		console.log("New size:", newSize);
+		// console.log("New size:", newSize);
 
 		const newScreenPosition = new THREE.Vector2(
 			infoBox.html.current?.offsetLeft || 0,
@@ -209,7 +215,7 @@ export const createUIActionSlice: StateCreator<
 		// 	},
 		// }));
 
-		console.log("Updated info box:", get().threeUI?.infoBox);
+		// console.log("Updated info box:", get().threeUI?.infoBox);
 	},
 });
 

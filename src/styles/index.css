@@ -37,6 +37,11 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+
+	--slider-track: oklch(0.97 1 1);
+	--slider-thumb: oklch(0.205 0 0);
+	--slider-border: oklch(0 0 0);
+	--slider-accent: oklch(0.646 0.222 41.116);
 }
 
 body {
@@ -99,6 +104,11 @@ body {
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
+
+	--color-slider-track: var(--slider-track);
+	--color-slider-thumb: var(--slider-thumb);
+	--color-slider-border: var(--slider-border);
+	--color-slider-accent: var(--slider-accent);
 }
 
 .dark {
@@ -136,10 +146,10 @@ body {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+	* {
+		@apply border-border outline-ring/50;
 	}
-  body {
-    @apply bg-background text-foreground;
+	body {
+		@apply bg-background text-foreground;
 	}
 }

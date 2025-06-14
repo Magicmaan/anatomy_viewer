@@ -55,7 +55,10 @@ const useHover = () => {
 			return;
 		}
 		if (material.opacity === 0) {
-			console.warn("Material opacity is 0, cannot apply hover effect", object.name);
+			console.warn(
+				"Material opacity is 0, cannot apply hover effect",
+				object.name
+			);
 			return;
 		}
 		hoverMaterial.map = material.map;
@@ -100,10 +103,15 @@ const useLayerOpacity = (model: Group<THREE.Object3DEventMap>) => {
 		model.traverse((child) => {
 			if (child instanceof THREE.Mesh && child.material) {
 				const material = child.material as THREE.MeshStandardMaterial;
-				material.name = (material.map?.name as string).split(".")[0] || "defaultMaterial";
+				material.name =
+					(material.map?.name as string).split(".")[0] || "defaultMaterial";
 				// correct render order from inner to outer layers
 				child.renderOrder =
-					5 - AnatomyLayersList.indexOf(material.name.toLowerCase() as AnatomyLayers) + 1;
+					5 -
+					AnatomyLayersList.indexOf(
+						material.name.toLowerCase() as AnatomyLayers
+					) +
+					1;
 				material.transparent = true;
 				mats[material.id] = material;
 			}
@@ -143,7 +151,14 @@ const useLayerOpacity = (model: Group<THREE.Object3DEventMap>) => {
 };
 
 const useAnimation = (model: Group<THREE.Object3DEventMap>) => {
-	const parts = ["head", "body", "left_arm", "right_arm", "left_leg", "right_leg"]
+	const parts = [
+		"head",
+		"body",
+		"left_arm",
+		"right_arm",
+		"left_leg",
+		"right_leg",
+	]
 		.filter((part) => model.getObjectByName(part))
 		.map((part) => model.getObjectByName(part) as THREE.Mesh);
 
@@ -180,15 +195,41 @@ const useAnimation = (model: Group<THREE.Object3DEventMap>) => {
 
 		// Apply rotation limits
 		targetRotation.y = THREE.MathUtils.clamp(targetRotation.y, -maxYaw, maxYaw); // 36 degrees
-		targetRotation.x = THREE.MathUtils.clamp(targetRotation.x, -maxPitch, maxPitch); // 22.5 degrees
-		targetRotation.z = THREE.MathUtils.clamp(targetRotation.z, -maxPitch, maxPitch); // 22.5 degrees
+		targetRotation.x = THREE.MathUtils.clamp(
+			targetRotation.x,
+			-maxPitch,
+			maxPitch
+		); // 22.5 degrees
+		targetRotation.z = THREE.MathUtils.clamp(
+			targetRotation.z,
+			-maxPitch,
+			maxPitch
+		); // 22.5 degrees
 
 		// Smoothly interpolate between current rotation and target rotation
-		head.rotation.y = THREE.MathUtils.lerp(oldRotation.y, targetRotation.y, yawSpeed);
-		head.rotation.x = THREE.MathUtils.lerp(oldRotation.x, targetRotation.x, pitchSpeed);
-		head.rotation.z = THREE.MathUtils.lerp(oldRotation.z, targetRotation.z, pitchSpeed);
+		head.rotation.y = THREE.MathUtils.lerp(
+			oldRotation.y,
+			targetRotation.y,
+			yawSpeed
+		);
+		head.rotation.x = THREE.MathUtils.lerp(
+			oldRotation.x,
+			targetRotation.x,
+			pitchSpeed
+		);
+		head.rotation.z = THREE.MathUtils.lerp(
+			oldRotation.z,
+			targetRotation.z,
+			pitchSpeed
+		);
 	};
-	const armAnimation = (arm: THREE.Mesh, offset?: number = 0) => {
+	const armAnimation = ({
+		arm,
+		offset = 0,
+	}: {
+		arm: THREE.Mesh;
+		offset?: number;
+	}) => {
 		// Add arm animation logic here if needed
 		// For now, just log the arm name
 		// console.log("Animating arm:", arm.name);
@@ -215,7 +256,10 @@ const useAnimation = (model: Group<THREE.Object3DEventMap>) => {
 		}
 		parts.forEach((part) => {
 			if (part.name.includes("arm")) {
-				armAnimation(part, part.name.includes("left") ? 1 : -1);
+				armAnimation({
+					arm: part,
+					offset: part.name.includes("left") ? 1 : -1,
+				});
 			}
 			// Add more animations for other parts if needed
 		});
@@ -228,7 +272,7 @@ export default function Model({ model }: ModelProps) {
 	const { selected, setSelected } = useScene(
 		useShallow((state) => ({
 			selected: state.selected,
-			setSelected: state.setSelected,
+			setSelected: state.setSelectedByMesh,
 		}))
 	);
 
@@ -273,7 +317,12 @@ export default function Model({ model }: ModelProps) {
 						stripName(e.object.name) as keyof typeof AnatomyString_en
 					);
 
-					console.log("Model clicked", e.object.name, "Display Name:", displayName);
+					console.log(
+						"Model clicked",
+						e.object.name,
+						"Display Name:",
+						displayName
+					);
 					e.stopPropagation();
 					const position = e.object.getWorldPosition(new THREE.Vector3());
 					const rotation = e.object.rotation.clone();

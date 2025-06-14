@@ -3,9 +3,14 @@ import { ARButton, VRButton } from "@react-three/xr";
 
 import Model from "@/components/Model";
 import { Canvas } from "@react-three/fiber";
-import { CameraControls, Html, Line, PerspectiveCamera } from "@react-three/drei";
+import {
+	CameraControls,
+	Html,
+	Line,
+	PerspectiveCamera,
+} from "@react-three/drei";
 import UIController from "./components/ui/UIController";
-import InfoBox from "./components/ui/infoBox";
+import SelectedInfoBox from "./components/ui/infoBox";
 import ToolBar from "./components/ui/ToolBar";
 import { HumanModel } from "./components/HumanModel";
 import LayerSelector from "./components/ui/LayerSelector";
@@ -25,6 +30,9 @@ export default function App() {
 			<UIController />
 			<Canvas
 				className="w-full h-full bg-gray-300"
+				onPointerMissed={() => {
+					scene.setSelectedByMesh(null);
+				}}
 				onCreated={(state) => {
 					state.gl.setPixelRatio(window.devicePixelRatio);
 					state.gl.setSize(window.innerWidth, window.innerHeight);
@@ -41,7 +49,9 @@ export default function App() {
 								if (i.object.material.visible === false) return;
 
 								if (i.object.material instanceof Array) {
-									return i.object.material.some((m) => m.visible && m.opacity > 0);
+									return i.object.material.some(
+										(m) => m.visible && m.opacity > 0
+									);
 								}
 								return i;
 							}),
@@ -52,15 +62,21 @@ export default function App() {
 						state.gl,
 						state.size
 					);
-				}}>
-				<PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} aspect={1.778} />
+				}}
+			>
+				<PerspectiveCamera
+					makeDefault
+					position={[0, 0, 5]}
+					fov={75}
+					aspect={1.778}
+				/>
 
 				<ambientLight intensity={1.25} />
 
 				<CameraControls makeDefault />
 
 				<Model model="/models/skeleton.gltf" />
-				<InfoBox />
+				<SelectedInfoBox />
 			</Canvas>
 		</>
 	);

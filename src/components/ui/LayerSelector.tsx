@@ -9,24 +9,28 @@ import useScene from "@/store/store";
 export default function LayerSelector() {
 	const store = useScene();
 
+	const iconStyleBG =
+		"w-8 aspect-square m-l-auto pixel-img pointer-events-none select-none bg-slider-track border-1 border-slider-border p-0.5 rounded-full shadow-lg bg-no-repeat bg-center bg-contain flex justify-center items-center first:[&_span]:mt-2 last:[&_span]:mb-2";
+	const iconMask = "fixed bg-slider-track w-[0.9rem] h-8";
 	const iconStyle =
-		"w-full aspect-square mx-auto pixel-img pointer-events-none select-none";
+		"w-full z-10 aspect-square pixel-img pointer-events-none select-none p-0.5 ";
 
-	const largeLine = <div className="w-10 h-0.5 bg-white/50" />;
+	const largeLine = <div className="w-10 h-0.5 bg-white/50 " />;
 	const SmallLine = <div className="w-4 h-0.5 bg-white/25" />;
 
 	const [currentValue, setCurrentValue] = useState(50);
 
 	return (
 		<>
-			<div className="absolute flex flex-col justify-between w-16 pointer-events-auto group top-1/4 h-1/2">
+			<div className="fixed flex flex-col justify-between w-full pointer-events-auto group h-96">
 				<div
 					id="slider-tags-container"
-					className="absolute z-10 flex flex-col justify-between w-auto h-full py-16 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none group translate-x-1/4 group-hover:opacity-100"
+					className="absolute z-10 flex flex-col justify-between w-auto h-full py-16 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none group group-hover:opacity-100 "
 					style={{
 						maskImage: `linear-gradient(to bottom, transparent, black ${100 - currentValue}%, transparent)`,
 						maskSize: "100% 100%",
-					}}>
+					}}
+				>
 					<div className="flex flex-row items-center justify-start w-full h-0.5 gap-4">
 						{largeLine} <span>Skin</span>
 					</div>
@@ -52,20 +56,37 @@ export default function LayerSelector() {
 				</div>
 				<div
 					id="slider-images-container "
-					className="absolute z-10 flex flex-col items-center justify-between w-full h-full px-2 py-12 pointer-events-none group "
+					className="absolute z-10 flex flex-col items-center justify-between w-full h-full px-1 py-12 pointer-events-none group "
 					style={{
 						maskImage: `linear-gradient(to bottom, transparent, black ${100 - currentValue}%)`,
 						maskSize: "100% 100%",
-					}}>
-					<img src={SkinIcon} alt="Skin Layer" className={iconStyle} />
-					<img src={MuscleIcon} alt="Muscle Layer" className={iconStyle} />
+					}}
+				>
+					<div className={iconStyleBG}>
+						<img src={SkinIcon} alt="Skin Layer" className={iconStyle} />
+						<span className={iconMask} />
+					</div>
+					<div className={iconStyleBG}>
+						<img src={MuscleIcon} alt="Skin Layer" className={iconStyle} />
+						<div className={iconMask} />
+					</div>
+					<div className={iconStyleBG}>
+						<img src={BoneIcon} alt="Skin Layer" className={iconStyle} />
+						<span className={iconMask} />
+					</div>
 
-					<img src={BoneIcon} alt="Bone Layer" className={iconStyle} />
-					<img src={OrganIcon} alt="Organ Layer" className={iconStyle} />
+					<div className={iconStyleBG}>
+						<img src={OrganIcon} alt="Skin Layer" className={iconStyle} />
+						<span className={iconMask} />
+					</div>
+
+					{/* <img src={MuscleIcon} alt="Muscle Layer" className={iconStyle} />
+
+					<img src={BoneIcon} alt="Bone Layer" className={iconStyle} /> */}
 				</div>
 				<Slider
 					id="layer-slider"
-					defaultValue={[33]}
+					defaultValue={[100]}
 					max={100}
 					step={1}
 					orientation="vertical"
@@ -74,7 +95,8 @@ export default function LayerSelector() {
 						console.log("Slider value changed:", value);
 						setCurrentValue(value[0]);
 						store.setLayer(1 - value[0] / 100);
-					}}></Slider>
+					}}
+				></Slider>
 			</div>
 			{/* <p className="absolute top-40 left-20">Currently selected: {store.anatomyLayer}</p> */}
 		</>

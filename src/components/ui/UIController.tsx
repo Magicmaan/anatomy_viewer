@@ -1,5 +1,5 @@
 import BodyPreview from "./BodyPreview";
-import InfoBox from "./infoBox";
+import SelectedInfoBox from "./infoBox";
 import LayerSelector from "./LayerSelector";
 import AnatomyList from "./AnatomyList";
 import ToolBar from "./ToolBar";
@@ -16,9 +16,15 @@ export default function UIController() {
           onClick={() => console.log("Info Box Clicked")}
         /> */}
 			<ToolBar />
-			<LayerSelector />
+			<div className="absolute h-3/4 top-1/8 rounded-lg  left-4  w-12 glass">
+				<LayerSelector />
+			</div>
+
 			<SidebarProvider>
-				<SidebarTrigger size={"lg"} className="pointer-events-auto right-64 absolute" />
+				<SidebarTrigger
+					size={"lg"}
+					className="pointer-events-auto right-64 absolute"
+				/>
 				<AnatomyList />
 			</SidebarProvider>
 			<BodyPreview />
