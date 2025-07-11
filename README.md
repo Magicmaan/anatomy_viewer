@@ -1,34 +1,50 @@
-# React Vite Application
+# 16-Bit Anatomy
 
-This project is a R3F application that allows you to view a gltf model. It has VR controls and has helpful notes about various model parts.
+<div align="center">
+  <img src="public/anatomy-logo-512.webp" alt="16-Bit Anatomy Logo" width="128" height="128">
+  
+  **An interactive retro-style anatomy viewer with VR support**
+  
+  *Explore the human body through pixelated layers with immersive 3D visualization*
+</div>
 
-## Prerequisites
+## ✨ Features
+
+- 🎮 **Retro Aesthetic**: 16-bit inspired visual style with pixel-perfect textures
+- 🔍 **Interactive Layer System**: Toggle between skin, muscle, skeleton, bone, and organ layers
+- 🥽 **VR/AR Support**: Full WebXR compatibility for immersive exploration
+- 📱 **Cross-Platform**: Works on desktop, mobile, and VR headsets
+- 🎯 **Educational**: Detailed anatomical information with interactive hotspots
+- 🎨 **Modern Tech Stack**: Built with React Three Fiber and Three.js
+
+## 🚀 Quick Start
+
+### Prerequisites
 
 - Node.js (version 14.18+ or 16+)
-- npm or yarn or pnpm
+- npm, yarn, or pnpm
+- Modern web browser with WebGL support
 
-## Installation
+### Installation
 
-Follow these steps to set up the project locally:
-
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/yourusername/16-bit-anatomy.git
+   cd 16-bit-anatomy
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
    ```bash
    npm install
    # or
-   yarn
+   yarn install
    # or
    pnpm install
    ```
 
-3. Start the development server:
+3. **Start the development server:**
 
    ```bash
    npm run dev
@@ -38,28 +54,98 @@ Follow these steps to set up the project locally:
    pnpm dev
    ```
 
-4. Open your browser and navigate to:
+4. **Open your browser:**
    ```
    http://localhost:5173
    ```
 
-## Available Scripts
+## 🎮 How to Use
 
-- `npm run dev` - Starts the development server
+### Desktop Controls
 
-## How To Use
+- **Mouse**: Click and drag to rotate the model
+- **Scroll**: Zoom in/out
+- **Click on body parts**: View detailed information
+- **Layer Controls**: Use the sidebar to toggle between anatomical layers
 
-Once started, enter XR (at the top) to enter the VR emulator.
+### VR Controls
 
-> Ensure you're using controllers, not hands.
+1. **Enter VR**: Click the "Enter XR" button at the top of the screen
+2. **Controllers**: Ensure you're using VR controllers (not hand tracking)
+3. **Teleportation**: Point and click on the platform to teleport
+4. **Model Interaction**: Point and click on the model to select it
+5. **Rotation**: Use the left joystick to rotate the model on XY plane
+6. **Scaling**: Hold the main button + press both RG and LG triggers
+   - Drag controllers apart to scale up/down
+   - Rotate one controller around the other for Z-axis rotation
 
-To teleport about platform, left click the platform
+### Layer System
 
-To control model, left click the model
+Navigate between different anatomical layers:
 
-To rotate the model on XY plane, use the left joystick
+- **Skin**: Outer skin layer with texture details
+- **Muscle**: Muscular system with individual muscle groups
+- **Skeleton**: Complete skeletal structure
+- **Bone**: Individual bone components
+- **Organs**: Internal organ systems
 
-To scale the model, whilst holding main button, press down RG and LG.
+## 🛠️ Tech Stack
 
-- When in this mode, drag controllers apart to scale
-- Can also rotate on Z plane by rotation controller around the other
+- **Frontend**: React 19 + TypeScript
+- **3D Engine**: Three.js + React Three Fiber
+- **VR/AR**: React Three XR
+- **Physics**: Rapier Physics Engine
+- **UI**: Radix UI + Tailwind CSS
+- **State Management**: Zustand
+- **Build Tool**: Vite
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── ui/             # UI components (sidebar, controls, etc.)
+│   ├── Model.tsx       # Main 3D model component
+│   └── Canvas.tsx      # 3D canvas setup
+├── constants/          # App constants and localizations
+├── hooks/              # Custom React hooks
+├── store/              # State management
+├── styles/             # CSS and styling
+├── types/              # TypeScript type definitions
+└── assets/             # 3D models, textures, fonts
+    ├── models/         # 3D model files (.gltf, .obj)
+    ├── textures/       # Texture files
+    └── fonts/          # Custom fonts
+```
+
+## 🎨 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Medical illustrations and anatomical data
+- Three.js community for excellent 3D web development tools
+- React Three Fiber ecosystem for React integration
+- Retro gaming aesthetic inspiration
+
+---
+
+<div align="center">
+  Made with ❤️ for educational purposes
+</div>
