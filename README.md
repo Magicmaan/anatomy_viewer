@@ -3,17 +3,16 @@
 <div align="center">
   <img src="public/anatomy-logo-512.webp" alt="16-Bit Anatomy Logo" width="128" height="128">
   
-  **An interactive retro-style anatomy viewer with VR support**
+  **An interactive retro-style anatomy viewer**
   
-  *Explore the human body through pixelated layers with immersive 3D visualization*
+  *Explore the human body through pixelated layers*
 </div>
 
 ## ✨ Features
 
 - 🎮 **Retro Aesthetic**: 16-bit inspired visual style with pixel-perfect textures
 - 🔍 **Interactive Layer System**: Toggle between skin, muscle, skeleton, bone, and organ layers
-- 🥽 **VR/AR Support**: Full WebXR compatibility for immersive exploration
-- 📱 **Cross-Platform**: Works on desktop, mobile, and VR headsets
+- 📱 **Cross-Platform**: Works on desktop, mobile
 - 🎯 **Educational**: Detailed anatomical information with interactive hotspots
 - 🎨 **Modern Tech Stack**: Built with React Three Fiber and Three.js
 
@@ -68,17 +67,6 @@
 - **Click on body parts**: View detailed information
 - **Layer Controls**: Use the sidebar to toggle between anatomical layers
 
-### VR Controls
-
-1. **Enter VR**: Click the "Enter XR" button at the top of the screen
-2. **Controllers**: Ensure you're using VR controllers (not hand tracking)
-3. **Teleportation**: Point and click on the platform to teleport
-4. **Model Interaction**: Point and click on the model to select it
-5. **Rotation**: Use the left joystick to rotate the model on XY plane
-6. **Scaling**: Hold the main button + press both RG and LG triggers
-   - Drag controllers apart to scale up/down
-   - Rotate one controller around the other for Z-axis rotation
-
 ### Layer System
 
 Navigate between different anatomical layers:
@@ -93,37 +81,9 @@ Navigate between different anatomical layers:
 
 - **Frontend**: React 19 + TypeScript
 - **3D Engine**: Three.js + React Three Fiber
-- **VR/AR**: React Three XR
-- **Physics**: Rapier Physics Engine
-- **UI**: Radix UI + Tailwind CSS
+- **UI**: ShadCN + Tailwind CSS
 - **State Management**: Zustand
 - **Build Tool**: Vite
-
-## 📁 Project Structure
-
-```
-src/
-├── components/          # React components
-│   ├── ui/             # UI components (sidebar, controls, etc.)
-│   ├── Model.tsx       # Main 3D model component
-│   └── Canvas.tsx      # 3D canvas setup
-├── constants/          # App constants and localizations
-├── hooks/              # Custom React hooks
-├── store/              # State management
-├── styles/             # CSS and styling
-├── types/              # TypeScript type definitions
-└── assets/             # 3D models, textures, fonts
-    ├── models/         # 3D model files (.gltf, .obj)
-    ├── textures/       # Texture files
-    └── fonts/          # Custom fonts
-```
-
-## 🎨 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
 
 ## 🤝 Contributing
 
